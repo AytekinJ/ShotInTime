@@ -8,16 +8,26 @@ public class GunSway : MonoBehaviour
     public float swaySmoothFactor = 4f;
 
     private Vector3 initialPosition;
+    //public CameraController CameraScript;
+    //Camera cam;
+
+    float mouseY, mouseX;
 
     void Start()
     {
         initialPosition = transform.localPosition;
+        //cam = Camera.main;
     }
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        mouseX = Input.GetAxis("Mouse X");
+
+        //float rotationX = cam.transform.eulerAngles.x;
+        //if (rotationX < CameraScript.PositiveClamp - 1 || rotationX > CameraScript.NegativeClamp - 1)
+        //{
+            mouseY = Input.GetAxis("Mouse Y");
+        //}
 
         float moveX = Mathf.Clamp(-mouseX * swayAmount, -maxSwayAmount, maxSwayAmount);
         float moveY = Mathf.Clamp(-mouseY * swayAmount, -maxSwayAmount, maxSwayAmount);

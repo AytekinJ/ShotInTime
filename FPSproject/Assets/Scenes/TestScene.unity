@@ -805,6 +805,8 @@ MonoBehaviour:
   player: {fileID: 66637562}
   sensitivity: 2
   smoothSpeed: 15
+  NegativeClamp: -89
+  PositiveClamp: 89
   ScaledSensitivity: 0
 --- !u!114 &1567336860
 MonoBehaviour:

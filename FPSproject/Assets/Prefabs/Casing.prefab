@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 41becb6a2b56f834a83b9315f412c71e, type: 3}
+  - {fileID: 2100000, guid: 51480629e5786d44aaab49c27e393398, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +91,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886811319230202472}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f43bc95dded5e694ebf5758024d055d3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -142,7 +142,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -162,4 +162,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToDestroy: 10
   DestroyOnCollision: 0
-  TrailTransformSetObject: {fileID: 0}
+  FadeAway: 1
+  FadeRate: 10
