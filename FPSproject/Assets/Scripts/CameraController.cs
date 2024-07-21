@@ -9,6 +9,9 @@ public class CameraController : MonoBehaviour
     public float sensitivity = 2.0f;
     public float smoothSpeed = 15.0f;
 
+    public float NegativeClamp = -89;
+    public float PositiveClamp = 89;
+
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
 
@@ -49,7 +52,7 @@ public class CameraController : MonoBehaviour
 
         rotationY += mouseX;
         rotationX -= mouseY;
-        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
+        rotationX = Mathf.Clamp(rotationX, NegativeClamp, PositiveClamp);
     }
 
     void RotatePlayer()
