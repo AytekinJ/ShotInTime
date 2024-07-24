@@ -2054,9 +2054,9 @@ MonoBehaviour:
   movementScript: {fileID: 66637563}
   TepmeScript: {fileID: 442435166}
   CurrentAmmo: 1
-  MaxAmmo: 25
+  MaxAmmo: 17
   ReloadTime: 1
-  FireRate: 0.15
+  FireRate: 0.1
   GunMuzzle: {fileID: 1771056722}
   BulletPrefab: {fileID: 1339718601804612330, guid: ce58337d3a05752409b6fe013a3712e0,
     type: 3}
@@ -2064,7 +2064,7 @@ MonoBehaviour:
   BulletCasePrefab: {fileID: 4984470313778781999, guid: ed6c5b96b751ad544bed151d76232806,
     type: 3}
   IsAiming: 0
-  IsAuto: 1
+  IsAuto: 0
   MaxRayDistance: 50
   lineRenderer: {fileID: 0}
 --- !u!120 &7823060093669630893

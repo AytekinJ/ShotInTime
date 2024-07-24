@@ -101,7 +101,6 @@ public class GunScript : MonoBehaviour
         Vector3 direction = GunMuzzle.forward;
         Physics.Raycast(GunMuzzle.position, direction, out RaycastHit hitInfo, MaxRayDistance);
 
-        // Draw the ray
         Debug.DrawRay(GunMuzzle.position, direction * MaxRayDistance, Color.red, 0.1f);
 
         if (lineRenderer != null)
