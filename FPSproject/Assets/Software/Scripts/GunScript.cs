@@ -17,6 +17,7 @@ public class GunScript : MonoBehaviour
     bool CanShoot = true;
     public bool IsAiming;
     [SerializeField] bool IsAuto = false;
+    public float MaxRayDistance;
 
     void Start()
     {
@@ -85,6 +86,8 @@ public class GunScript : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(transform.right * 300, ForceMode.Impulse);
 
+        RayShoot();
+
         var Casing = Instantiate(BulletCasePrefab, BulletCaseTransform.position, BulletCaseTransform.rotation, null);
         Rigidbody CasingRb = Casing.GetComponent<Rigidbody>();
         if (movementScript.IsMovingRight())
@@ -94,6 +97,14 @@ public class GunScript : MonoBehaviour
 
         TepmeScript.ApplyRecoil();
         animator.SetTrigger("GlockShoot");
+    }
+
+    void RayShoot()
+    {
+        Physics.Raycast(GunMuzzle.position, GunMuzzle.forward, out RaycastHit hitInfo, MaxRayDistance);
+        if (hitInfo.collider == null)
+            return;
+        print(hitInfo.collider.transform.name);
     }
 
     IEnumerator Reload()
