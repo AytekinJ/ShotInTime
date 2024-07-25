@@ -16,6 +16,7 @@ public class GunScript : MonoBehaviour
     public GameObject BulletCasePrefab;
     bool CanShoot = true;
     public bool IsAiming;
+    public bool EffectSignal;
     [SerializeField] bool IsAuto = false;
     public float MaxRayDistance;
     public LineRenderer lineRenderer;
@@ -63,6 +64,7 @@ public class GunScript : MonoBehaviour
     {
         if (CanShoot && CurrentAmmo > 0)
         {
+            EffectSignal = true;
             StartCoroutine(ShootWithDelay());
         }
     }
