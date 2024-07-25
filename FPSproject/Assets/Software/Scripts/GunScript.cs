@@ -17,10 +17,13 @@ public class GunScript : MonoBehaviour
     bool CanShoot = true;
     public bool IsAiming;
     [SerializeField] bool IsAuto = false;
+    public float MaxRayDistance;
+    public LineRenderer lineRenderer;
 
     void Start()
     {
         CurrentAmmo = MaxAmmo + 1;
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     void Update()
@@ -39,11 +42,6 @@ public class GunScript : MonoBehaviour
                 TryShoot();
             }
         }
-
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    TryShoot();
-        //}
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -85,6 +83,8 @@ public class GunScript : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(transform.right * 300, ForceMode.Impulse);
 
+        RayShoot();
+
         var Casing = Instantiate(BulletCasePrefab, BulletCaseTransform.position, BulletCaseTransform.rotation, null);
         Rigidbody CasingRb = Casing.GetComponent<Rigidbody>();
         if (movementScript.IsMovingRight())
@@ -94,6 +94,28 @@ public class GunScript : MonoBehaviour
 
         TepmeScript.ApplyRecoil();
         animator.SetTrigger("GlockShoot");
+    }
+
+    void RayShoot()
+    {
+        Vector3 direction = GunMuzzle.forward;
+        Physics.Raycast(GunMuzzle.position, direction, out RaycastHit hitInfo, MaxRayDistance);
+
+        Debug.DrawRay(GunMuzzle.position, direction * MaxRayDistance, Color.red, 0.1f);
+
+        if (lineRenderer != null)
+        {
+            lineRenderer.SetPosition(0, GunMuzzle.position);
+            if (hitInfo.collider != null)
+            {
+                lineRenderer.SetPosition(1, hitInfo.point);
+                print(hitInfo.collider.transform.name);
+            }
+            else
+            {
+                lineRenderer.SetPosition(1, GunMuzzle.position + direction * MaxRayDistance);
+            }
+        }
     }
 
     IEnumerator Reload()
@@ -109,5 +131,14 @@ public class GunScript : MonoBehaviour
             CurrentAmmo = MaxAmmo;
         }
         CanShoot = true;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        if (GunMuzzle != null)
+        {
+            Gizmos.DrawRay(GunMuzzle.position, GunMuzzle.forward * MaxRayDistance);
+        }
     }
 }
