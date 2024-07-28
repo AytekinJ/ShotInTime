@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 3
   speed: 5
-  _GravityForce: -9.81
+  _GravityForce: -4.905
   _isgrounded: 0
   GroundCheckTransform: {fileID: 66637562}
   raycastLength: 1.1
@@ -200,6 +200,8 @@ MonoBehaviour:
   jumpHeight: 9
   JumpKey: 32
   CrouchSpeed: 5
+  TargetSpeedMultiplier: 5
+  gunScript: {fileID: 7823060093669630892}
   playerIsMoving: 0
   isRunning: 0
   isCrouching: 0
@@ -2063,7 +2065,9 @@ MonoBehaviour:
   BulletCaseTransform: {fileID: 523935986}
   BulletCasePrefab: {fileID: 4984470313778781999, guid: ed6c5b96b751ad544bed151d76232806,
     type: 3}
+  CanAim: 0
   IsAiming: 0
+  EffectSignal: 0
   IsAuto: 0
   MaxRayDistance: 50
   lineRenderer: {fileID: 0}

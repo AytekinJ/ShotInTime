@@ -14,6 +14,7 @@ public class GunScript : MonoBehaviour
     public GameObject BulletPrefab;
     public Transform BulletCaseTransform;
     public GameObject BulletCasePrefab;
+    public bool CanAim;
     bool CanShoot = true;
     public bool IsAiming;
     public bool EffectSignal;
@@ -50,11 +51,11 @@ public class GunScript : MonoBehaviour
                 StartCoroutine(Reload());
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) /*&& CanAim*/)
         {
             IsAiming = true;
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        else if (Input.GetKeyUp(KeyCode.Mouse1) /*&& CanAim*/)
         {
             IsAiming = false;
         }
