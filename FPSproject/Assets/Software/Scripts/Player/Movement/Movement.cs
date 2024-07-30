@@ -49,8 +49,8 @@ public class Movement : MonoBehaviour
 
     float BaseTargetSpeedMultiplier;
 
-    float horizontal;
-    float vertical;
+    public float horizontal;
+    public float vertical;
 
     public bool playerIsMoving = false;
 
@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
 
     float BaseSpeed;
 
-    [SerializeField] bool isRunning;
+    public bool isRunning;
 
     [SerializeField] bool isCrouching;
 
