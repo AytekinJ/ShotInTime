@@ -2120,6 +2120,10 @@ MonoBehaviour:
   IsAuto: 0
   MaxRayDistance: 50
   lineRenderer: {fileID: 0}
+  AudioPrefab: {fileID: 5138255019282357780, guid: d081948a497503c4fb819d539abe5db5,
+    type: 3}
+  MinPitch: 1
+  MaxPitch: 1.2
 --- !u!120 &7823060093669630893
 LineRenderer:
   m_ObjectHideFlags: 0

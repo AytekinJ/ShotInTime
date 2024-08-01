@@ -21,6 +21,10 @@ public class GunScript : MonoBehaviour
     [SerializeField] bool IsAuto = false;
     public float MaxRayDistance;
     public LineRenderer lineRenderer;
+    public GameObject AudioPrefab;
+
+    public float MinPitch = 1f;
+    public float MaxPitch = 1.2f;
 
     void Start()
     {
@@ -81,6 +85,10 @@ public class GunScript : MonoBehaviour
     void Shoot()
     {
         CurrentAmmo--;
+
+        var audioPrefab = Instantiate(AudioPrefab, transform.position, Quaternion.identity, gameObject.transform);
+        AudioSource AudioToPlay = audioPrefab.GetComponent<AudioSource>();
+        AudioToPlay.pitch = Random.Range(MinPitch * Time.timeScale, MaxPitch * Time.timeScale);
 
         var bullet = Instantiate(BulletPrefab, GunMuzzle.position, GunMuzzle.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
