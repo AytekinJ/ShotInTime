@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour
         //Time.timeScale = TimeScaleValue;
         ScaledSensitivity = sensitivity * Time.timeScale;
         //ScaledSmoothSpeed = smoothSpeed / Time.timeScale;
+        GameObject GameManagerObject = GameObject.FindGameObjectWithTag("GameController");
+        TimeLerpScript = GameManagerObject.GetComponent<TimeScaleLerp>();
         LockCursor();
     }
 

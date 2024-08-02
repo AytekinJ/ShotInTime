@@ -9,7 +9,6 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float Mass = 5f;
 
-    [SerializeField]
     public float speed = 5f;
 
     [SerializeField]
@@ -39,8 +38,19 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float CrouchSpeed = 10f;
 
-    float horizontal;
-    float vertical;
+    [SerializeField]
+    float TargetSpeedMultiplier = 5f;
+
+    [SerializeField]
+    GunScript gunScript;
+
+    float BaseCamFov;
+    float CameraFov;
+
+    float BaseTargetSpeedMultiplier;
+
+    public float horizontal;
+    public float vertical;
 
     public bool playerIsMoving = false;
 
@@ -48,7 +58,7 @@ public class Movement : MonoBehaviour
 
     float BaseSpeed;
 
-    [SerializeField] bool isRunning;
+    public bool isRunning;
 
     [SerializeField] bool isCrouching;
 
@@ -59,6 +69,9 @@ public class Movement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Height = characterController.height;
         BaseSpeed = speed;
+        BaseTargetSpeedMultiplier = TargetSpeedMultiplier;
+        CameraFov = Camera.main.fieldOfView;
+        BaseCamFov = Camera.main.fieldOfView;
     }
 
     void Update()
@@ -77,16 +90,24 @@ public class Movement : MonoBehaviour
             Jump();
         }
 
-        speed = Mathf.Lerp(speed, TargetSpeed, CrouchSpeed * Time.deltaTime);
+        speed = Mathf.Lerp(speed, TargetSpeed, TargetSpeedMultiplier * Time.deltaTime);
+        
 
-        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching && IsMoving())
         {
+            //gunScript.CanAim = false;
             TargetSpeed = BaseSpeed * 1.5f;
+            TargetSpeedMultiplier = BaseTargetSpeedMultiplier / 4;
+           // Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, CameraFov + 5, 1f * Time.deltaTime);
             isRunning = true;
         }
         else if (!isCrouching)
         {
+            //gunScript.CanAim = true;
             TargetSpeed = BaseSpeed;
+            TargetSpeedMultiplier = BaseTargetSpeedMultiplier / 2;
+            //if (!gunScript.IsAiming)
+              //  Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, BaseCamFov, 0.25f * Time.deltaTime);
             isRunning = false;
         }
 
@@ -97,12 +118,14 @@ public class Movement : MonoBehaviour
             characterController.height = Mathf.Lerp(characterController.height, Height / 2, CrouchSpeed * Time.deltaTime);
             //speed = Mathf.Lerp(speed, BaseSpeed / 2, CrouchSpeed * Time.deltaTime);
             TargetSpeed = BaseSpeed / 2;
+            TargetSpeedMultiplier = BaseTargetSpeedMultiplier / 2;
             isCrouching = true;
         }
         else if (!isRunning)
         {
             characterController.height = Mathf.Lerp(characterController.height, Height, CrouchSpeed / 2 * Time.deltaTime);
             //speed = Mathf.Lerp(speed, BaseSpeed, CrouchSpeed / 2 * Time.deltaTime);
+            TargetSpeedMultiplier = BaseTargetSpeedMultiplier;
             TargetSpeed = BaseSpeed;
             if (characterController.height >= 1.9f)
             {
@@ -124,7 +147,7 @@ public class Movement : MonoBehaviour
         movement = Vector3.ClampMagnitude(movement, 1f);
 
         Vector3 moveDirection = transform.TransformDirection(movement);
-        characterController.Move(moveDirection * speed * Time.deltaTime);
+        characterController.Move(speed * Time.deltaTime * moveDirection);
     }
 
     void Gravity()

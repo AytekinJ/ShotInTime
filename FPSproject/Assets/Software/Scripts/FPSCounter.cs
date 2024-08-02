@@ -28,12 +28,12 @@ public class FPSCounter : MonoBehaviour
     private void OnGUI()
     {
         GUIStyle style = new GUIStyle();
-        Rect rect = new Rect(10, 10, 100, 50); // Position and size of the FPS display
+        Rect rect = new Rect(10, 10, 100, 50);
 
         style.fontSize = 16;
         style.normal.textColor = Color.green;
 
-        int fpsInt = Mathf.RoundToInt(fps); // Round the FPS to the nearest integer
+        int fpsInt = Mathf.RoundToInt(fps);
         GUI.Label(rect, "FPS: " + fpsInt, style);
     }
 }

@@ -14,12 +14,17 @@ public class GunScript : MonoBehaviour
     public GameObject BulletPrefab;
     public Transform BulletCaseTransform;
     public GameObject BulletCasePrefab;
+    public bool CanAim;
     bool CanShoot = true;
     public bool IsAiming;
     public bool EffectSignal;
     [SerializeField] bool IsAuto = false;
-    public float MaxRayDistance;
+    public float MaxRayDistance = 50f;
     public LineRenderer lineRenderer;
+    public GameObject AudioPrefab;
+
+    public float MinPitch = 1f;
+    public float MaxPitch = 1.2f;
 
     void Start()
     {
@@ -50,11 +55,11 @@ public class GunScript : MonoBehaviour
                 StartCoroutine(Reload());
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) /*&& CanAim*/)
         {
             IsAiming = true;
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        else if (Input.GetKeyUp(KeyCode.Mouse1) /*&& CanAim*/)
         {
             IsAiming = false;
         }
@@ -80,6 +85,10 @@ public class GunScript : MonoBehaviour
     void Shoot()
     {
         CurrentAmmo--;
+
+        var audioPrefab = Instantiate(AudioPrefab, transform.position, Quaternion.identity, gameObject.transform);
+        AudioSource AudioToPlay = audioPrefab.GetComponent<AudioSource>();
+        AudioToPlay.pitch = Random.Range(MinPitch * Time.timeScale, MaxPitch * Time.timeScale);
 
         var bullet = Instantiate(BulletPrefab, GunMuzzle.position, GunMuzzle.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
