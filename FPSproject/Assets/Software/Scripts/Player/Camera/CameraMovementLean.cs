@@ -6,7 +6,8 @@ public class CameraMovementLean : MonoBehaviour
 {
     [SerializeField] Movement movement;
     [SerializeField] float rotationSpeed = 5.0f;
-    float targetRotationSpeed;
+    [SerializeField] float targetRotationSpeed;
+    [SerializeField] float LeanMultiplier = 1.2f;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class CameraMovementLean : MonoBehaviour
     void Update()
     {
         checkIfRunning();
-        float targetRotationZ = -movement.horizontal;
+        float targetRotationZ = -movement.horizontal * LeanMultiplier;
         Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, targetRotationZ);
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * targetRotationSpeed);

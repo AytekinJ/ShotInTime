@@ -197,7 +197,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   yVelocity: 0
-  jumpHeight: 9
+  jumpHeight: 5
   JumpKey: 32
   CrouchSpeed: 5
   TargetSpeedMultiplier: 5
@@ -218,6 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 353348680}
   - component: {fileID: 353348679}
+  - component: {fileID: 353348681}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -255,6 +256,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &353348681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353348678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee44e6205bb9dd4c84e352fd13518d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateInterval: 0.2
 --- !u!1 &442435164
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +597,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 66637563}
   rotationSpeed: 5
+  targetRotationSpeed: 0
+  LeanMultiplier: 1.2
 --- !u!1 &839153439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,7 +2139,7 @@ MonoBehaviour:
   AudioPrefab: {fileID: 5138255019282357780, guid: d081948a497503c4fb819d539abe5db5,
     type: 3}
   MinPitch: 1
-  MaxPitch: 1.2
+  MaxPitch: 1.1
 --- !u!120 &7823060093669630893
 LineRenderer:
   m_ObjectHideFlags: 0

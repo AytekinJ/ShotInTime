@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8547030038854911609}
   - component: {fileID: 8968288598065983187}
   - component: {fileID: 8388739843839797131}
+  - component: {fileID: 1928275447}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -65,7 +66,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToDestroy: 3
   DestroyOnCollision: 1
-  TrailTransformSetObject: {fileID: 0}
+  FadeAway: 0
+  FadeRate: 10
+--- !u!64 &1928275447
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339718601804612330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2297189823522129561
 GameObject:
   m_ObjectHideFlags: 0
