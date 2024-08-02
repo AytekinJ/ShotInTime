@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6072649904721541278}
   - component: {fileID: 6072649904721541265}
+  - component: {fileID: -7209574069003752956}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -47,3 +48,16 @@ MonoBehaviour:
   targetTimeScale: 0.2
   slerpDuration: 3
   holdDuration: 5
+--- !u!114 &-7209574069003752956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072649904721541264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee44e6205bb9dd4c84e352fd13518d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateInterval: 0.2

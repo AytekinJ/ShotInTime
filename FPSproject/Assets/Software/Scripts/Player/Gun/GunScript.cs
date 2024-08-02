@@ -19,7 +19,7 @@ public class GunScript : MonoBehaviour
     public bool IsAiming;
     public bool EffectSignal;
     [SerializeField] bool IsAuto = false;
-    public float MaxRayDistance;
+    public float MaxRayDistance = 50f;
     public LineRenderer lineRenderer;
     public GameObject AudioPrefab;
 
