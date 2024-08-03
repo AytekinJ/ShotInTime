@@ -64,9 +64,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d5de1ab2b312148959c159ff606450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MetalImpactParticle: {fileID: 7653591712685376108, guid: f415c9fd47496d64b924ab1d49a079c7,
+    type: 3}
+  ImpactSmokeParticle: {fileID: 4519586960026361988, guid: aaeb2caae535fb84581b7f8254f2ae08,
+    type: 3}
   TimeToDestroy: 3
   DestroyOnCollision: 1
   FadeAway: 0
+  IsBullet: 1
   FadeRate: 10
 --- !u!64 &1928275447
 MeshCollider:

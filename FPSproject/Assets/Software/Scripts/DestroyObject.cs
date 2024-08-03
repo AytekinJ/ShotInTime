@@ -8,6 +8,7 @@ public class DestroyObject : MonoBehaviour
     public float TimeToDestroy = 3f;
     public bool DestroyOnCollision = false;
     public bool FadeAway = false;
+    public bool IsBullet = false;
     public float FadeRate = 10f;
     GameObject TrailTransformSetObject;
     MeshRenderer meshRenderer;
@@ -31,6 +32,9 @@ public class DestroyObject : MonoBehaviour
     {
         TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
 
+        if (IsBullet)
+            ParticleEffects(collision);
+
         if (trail != null)
         {
             trail.transform.parent = TrailTransformSetObject.transform;
@@ -40,6 +44,19 @@ public class DestroyObject : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void ParticleEffects(Collision collision)
+    {
+        if (collision.transform.tag == "MetalObject")
+        {
+            var impact = Instantiate(MetalImpactParticle, transform.position, transform.rotation, collision.transform);
+            impact.transform.Rotate(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
+
+            var smoke = Instantiate(ImpactSmokeParticle, transform.position, transform.rotation, collision.transform);
+            smoke.transform.Rotate(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
+        }
+        
     }
 
     IEnumerator FadeTheMaterial()
