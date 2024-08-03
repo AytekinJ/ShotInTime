@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour
 {
+    [SerializeField] GameObject MetalImpactParticle;
+    [SerializeField] GameObject ImpactSmokeParticle;
     public float TimeToDestroy = 3f;
     public bool DestroyOnCollision = false;
     public bool FadeAway = false;
