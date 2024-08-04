@@ -1,18 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+namespace Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    namespace AI
     {
-        
-    }
+        namespace Ranged
+        {
+            public class MovementRanged : MonoBehaviour
+            {
+                public static void RangedMovement(Vector3 playerPos,Vector3 thisPosition,NavMeshAgent agent,float followDistance, float speed)
+                {
+                    float distance = Vector3.Distance(playerPos, thisPosition);
+                    if (distance < followDistance) 
+                    {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+                    }
+
+                    agent.destination = playerPos;
+                }
+            }
+        }
+        namespace NonRanged
+        {
+            public class Movement : MonoBehaviour
+            {
+
+            }
+        }
     }
 }
