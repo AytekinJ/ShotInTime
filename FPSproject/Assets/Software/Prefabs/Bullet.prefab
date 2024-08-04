@@ -66,6 +66,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MetalImpactParticle: {fileID: 7653591712685376108, guid: f415c9fd47496d64b924ab1d49a079c7,
     type: 3}
+  WoodImpactParticle: {fileID: 4530967084594952855, guid: 9d7950fb54f7f1344869254d7616a5e6,
+    type: 3}
   ImpactSmokeParticle: {fileID: 4519586960026361988, guid: aaeb2caae535fb84581b7f8254f2ae08,
     type: 3}
   TimeToDestroy: 3

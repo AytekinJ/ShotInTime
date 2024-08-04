@@ -4,6 +4,7 @@ using UnityEngine;
 public class DestroyObject : MonoBehaviour
 {
     [SerializeField] GameObject MetalImpactParticle;
+    [SerializeField] GameObject WoodImpactParticle;
     [SerializeField] GameObject ImpactSmokeParticle;
     public float TimeToDestroy = 3f;
     public bool DestroyOnCollision = false;
@@ -52,10 +53,18 @@ public class DestroyObject : MonoBehaviour
         {
             var impact = Instantiate(MetalImpactParticle, transform.position, transform.rotation, collision.transform);
             impact.transform.Rotate(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
-
-            var smoke = Instantiate(ImpactSmokeParticle, transform.position, transform.rotation, collision.transform);
-            smoke.transform.Rotate(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
+            Destroy(impact, 1f);
         }
+        else if (collision.transform.tag == "WoodObject")
+        {
+            var impact = Instantiate(WoodImpactParticle, transform.position, transform.rotation, collision.transform);
+            impact.transform.Rotate(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
+            Destroy(impact, 1f);
+
+        }
+        var smoke = Instantiate(ImpactSmokeParticle, transform.position, transform.rotation, collision.transform);
+        smoke.transform.Rotate(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
+        Destroy(smoke, 1f);
         
     }
 
