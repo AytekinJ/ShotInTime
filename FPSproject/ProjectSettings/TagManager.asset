@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MetalObject
   - WoodObject
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

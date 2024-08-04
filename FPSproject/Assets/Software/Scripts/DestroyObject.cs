@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using Enemy.Stats;
 
 public class DestroyObject : MonoBehaviour
 {
     [SerializeField] GameObject MetalImpactParticle;
     [SerializeField] GameObject WoodImpactParticle;
     [SerializeField] GameObject ImpactSmokeParticle;
+    [Space(10)]
     public float TimeToDestroy = 3f;
     public bool DestroyOnCollision = false;
     public bool FadeAway = false;
@@ -13,6 +15,8 @@ public class DestroyObject : MonoBehaviour
     public float FadeRate = 10f;
     GameObject TrailTransformSetObject;
     MeshRenderer meshRenderer;
+    [Space(10)]
+    [SerializeField] float Damage;
 
     void Start()
     {
@@ -32,6 +36,11 @@ public class DestroyObject : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
+        if (collision.gameObject.tag == "Enemy")
+        {
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            enemyHealth.HealthValue = EHealth.GetDamage(enemyHealth.HealthValue, Damage, collision.gameObject);
+        }
 
         if (IsBullet)
             ParticleEffects(collision);

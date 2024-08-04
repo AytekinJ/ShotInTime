@@ -11,16 +11,28 @@ namespace Enemy
         {
             public class MovementRanged : MonoBehaviour
             {
-                public static void RangedMovement(Vector3 playerPos,Vector3 thisPosition,NavMeshAgent agent,float followDistance, float speed)
+                public static void Move(Vector3 playerPos, Vector3 thisPosition, NavMeshAgent agent, float minFollowDistance, float maxFollowDistance, float speed)
                 {
+                    agent.speed = speed;
                     float distance = Vector3.Distance(playerPos, thisPosition);
-                    if (distance < followDistance) 
+
+                    if (distance < minFollowDistance)
                     {
-
+                        agent.isStopped = false;
+                        Vector3 direction = (thisPosition - playerPos).normalized;
+                        agent.destination = thisPosition + direction; // Move away from the player
                     }
-
-                    agent.destination = playerPos;
+                    else if (distance > maxFollowDistance)
+                    {
+                        agent.isStopped = false;
+                        agent.destination = playerPos; // Move towards the player
+                    }
+                    else
+                    {
+                        agent.isStopped = true; // Stop if within the range
+                    }
                 }
+
             }
         }
         namespace NonRanged
@@ -28,6 +40,21 @@ namespace Enemy
             public class Movement : MonoBehaviour
             {
 
+            }
+        }
+    }
+    namespace Stats
+    {
+        public class EHealth : MonoBehaviour
+        {
+            public static float GetDamage(float currentHealth, float damageAmount,GameObject enemyObj)
+            {
+                currentHealth -= damageAmount;
+                if (currentHealth <= 0)
+                {
+                    Destroy(enemyObj);
+                }
+                return currentHealth;
             }
         }
     }
