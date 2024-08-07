@@ -75,6 +75,7 @@ MonoBehaviour:
   FadeAway: 0
   IsBullet: 1
   FadeRate: 10
+  Damage: 50
 --- !u!64 &1928275447
 MeshCollider:
   m_ObjectHideFlags: 0
