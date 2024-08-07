@@ -4,7 +4,7 @@ using UnityEngine;
 using Enemy.AI.Ranged;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class RangedMovement : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform player;
